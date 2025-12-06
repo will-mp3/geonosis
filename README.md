@@ -10,7 +10,7 @@ This repository provides a monthly-updated catalog of state-of-the-art open-sour
 
 ### Model Documentation
 
-`open_source_llm_master_list_december_2025.md` - Comprehensive catalog of 150+ actively maintained models, organized by parameter count (1B-670B+) with detailed specifications including:
+`model_docs/dec_2025.md` - Comprehensive catalog of 150+ actively maintained models, organized by parameter count (1B-670B+) with detailed specifications including:
 
 - Exact Hugging Face repository IDs
 - Model sizes and VRAM requirements  
