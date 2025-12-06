@@ -4,7 +4,7 @@ import os
 import shutil
 from datetime import datetime
 from huggingface_hub import snapshot_download, login
-from model_lists import dec_2025
+from model_lists import master_list
 
 # Load .env file if it exists
 try:
@@ -213,16 +213,16 @@ Environment Variables:
     # Handle list commands
     if args.list_categories:
         print("\nAvailable Categories:")
-        for cat, name in sorted(dec_2025.CATEGORIES.items()):
-            models = dec_2025.get_models_by_category(cat)
+        for cat, name in sorted(master_list.CATEGORIES.items()):
+            models = master_list.get_models_by_category(cat)
             total_size = sum(m["size_gb"] for m in models)
             print(f"  {cat:15} - {name:25} ({len(models):3} models, ~{total_size:6.0f} GB)")
         return
 
     if args.list_sizes:
         print("\nSize Categories:")
-        for size, name in sorted(dec_2025.SIZE_CATEGORIES.items()):
-            models = dec_2025.get_models_by_size(size)
+        for size, name in sorted(master_list.SIZE_CATEGORIES.items()):
+            models = master_list.get_models_by_size(size)
             total_size = sum(m["size_gb"] for m in models)
             print(f"  {size:10} - {name:25} ({len(models):3} models, ~{total_size:6.0f} GB)")
         return
@@ -231,11 +231,11 @@ Environment Variables:
     selected_models = None
 
     if args.all:
-        selected_models = dec_2025.get_all_models()
+        selected_models = master_list.get_all_models()
         print(f"Selected: ALL models ({len(selected_models)} total)")
 
     elif args.category:
-        selected_models = dec_2025.get_models_by_category(args.category)
+        selected_models = master_list.get_models_by_category(args.category)
         if not selected_models:
             print(f"Error: No models found for category '{args.category}'")
             print("Run with --list-categories to see available options")
@@ -243,7 +243,7 @@ Environment Variables:
         print(f"Selected: Category '{args.category}' ({len(selected_models)} models)")
 
     elif args.size:
-        selected_models = dec_2025.get_models_by_size(args.size)
+        selected_models = master_list.get_models_by_size(args.size)
         if not selected_models:
             print(f"Error: No models found for size '{args.size}'")
             print("Run with --list-sizes to see available options")
@@ -252,7 +252,7 @@ Environment Variables:
 
     elif args.models:
         # Find models by name
-        all_models = dec_2025.get_all_models()
+        all_models = master_list.get_all_models()
         selected_models = [m for m in all_models if m["name"] in args.models]
 
         if len(selected_models) != len(args.models):
@@ -268,7 +268,7 @@ Environment Variables:
 
     else:
         # Interactive mode - show all models
-        all_models = dec_2025.get_all_models()
+        all_models = master_list.get_all_models()
         print(f"\nInteractive Mode - {len(all_models)} models available")
         print_collection_info(all_models)
         selected_models = select_models_interactive(all_models)

@@ -127,7 +127,7 @@ Each model directory contains:
 
 ## Adding New Models
 
-Edit `model_lists/dec2025.py` to add new models. Follow the existing format:
+Edit `model_lists/master_list.py` to add new models. Follow the existing format:
 
 ```python
 {
@@ -142,8 +142,8 @@ Edit `model_lists/dec2025.py` to add new models. Follow the existing format:
 ## Monthly Model Lists
 
 Create new monthly lists in `model_lists/`:
-- `dec2025.py` - December 2025 models
-- `jan2026.py` - January 2026 models (future)
+- `dec_2025.py` - December 2025 models
+- `jan_2026.py` - January 2026 models (future)
 - etc.
 
 ## Tips
@@ -172,7 +172,7 @@ echo $HF_TOKEN
 python3 droid_factory.py
 
 # Or check the catalog
-python3 -m model_lists.dec2025
+python3 -m model_lists.master_list
 ```
 
 **Out of space:**
